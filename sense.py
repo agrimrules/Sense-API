@@ -20,7 +20,7 @@ def setpixels():
 def setpixel():
     _pixel = request.json['pxls']
     try:
-        sense.set_pixel([_pixel]*64)
+        sense.set_pixel([[_pixel]]*64)
     except Exception as error:
         return error
     return jsonify({'status': 'done'})
