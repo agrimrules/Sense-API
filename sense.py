@@ -10,6 +10,7 @@ app = Flask(__name__)
 def setpixels():
     _pixels = request.json['pxls']
     try:
+	sense.clear()
         sense.set_pixels(_pixels)
     except Exception as error:
         return error
@@ -20,7 +21,8 @@ def setpixels():
 def setpixel():
     _pixel = request.json['pxls']
     try:
-        sense.set_pixel([[_pixel]]*64)
+	sense.clear()
+        sense.set_pixels([_pixel]*64)
     except Exception as error:
         return error
     return jsonify({'status': 'done'})
