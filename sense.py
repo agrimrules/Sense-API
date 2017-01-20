@@ -34,7 +34,25 @@ def setpixel():
         sense.clear()
     except Exception as error:
         return error
-    return jsonify({'status': 'done'})
+    return jsonify({'status': 'done'})\
+
+@app.route("/getpixel", methods=['GET'])
+def getpixel():
+    reqpxl = request.args.get('coords')
+    try:
+       respxl = sense.get_pixel(reqpxl[0], reqpxl[1])
+    except Exception as error:
+        return error
+    return jsonify({'pixel': respxl})
+
+
+@app.route("/humidity", methods=['GET'])
+def gethumidity():
+    try:
+       humidity = sense.get_humidity();
+    except Exception as error:
+        return error
+    return jsonify({'humidity': humidity})
 
 
 if __name__ == "__main__":
